@@ -1,0 +1,266 @@
+---
+export interface Props {
+  maxChannelUrl: string;
+  authorImageSrc?: string;
+}
+const { maxChannelUrl, authorImageSrc } = Astro.props;
+
+const painItems = [
+  'Подросток теряется в вариантах, Вы не понимаете, что посоветовать?',
+  'Онлайн-тесты дают размытые рекомендации — и что дальше?',
+  'Взрослые хотят сменить профессию, но боятся терять доход и начинать с нуля',
+  'Советы родственников и «модные направления» 2020-х уже не работают',
+] as const;
+
+const channelItems = [
+  'Как читать рынок труда 2026–2030: что растёт, что автоматизируется',
+  'Чек-листы и шаблоны диалогов с подростком без давления',
+  'Стратегии смены карьеры для взрослых без потери дохода',
+  'Разборы реальных историй поступления и трудоустройства',
+] as const;
+
+const ctaClass =
+  'group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#2d4a3e] to-[#1e3d32] px-7 py-4 text-base font-semibold text-[#f7f4ef] shadow-[0_12px_40px_-12px_rgba(30,61,50,0.55)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_48px_-12px_rgba(30,61,50,0.6)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4a574]';
+---
+
+<div class="relative min-h-screen overflow-x-hidden text-[#1c1916] [font-family:var(--font-landing),ui-sans-serif,system-ui,sans-serif]">
+  <div
+    class="pointer-events-none fixed inset-0 -z-10 bg-[#f7f4ef]"
+    style="background-image: radial-gradient(1200px 600px at 10% 0%, rgba(196, 165, 116, 0.18) 0%, transparent 50%), radial-gradient(900px 500px at 100% 20%, rgba(45, 74, 62, 0.12) 0%, transparent 50%)"
+  >
+  </div>
+  <div
+    class="pointer-events-none fixed inset-0 -z-10 opacity-[0.35]"
+    style='background-image: url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%232d4a3e\' fill-opacity=\'0.08\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+  >
+  </div>
+
+  <section class="relative mx-auto max-w-6xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:pt-20">
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <p class="text-sm font-medium uppercase tracking-[0.2em] text-[#2d4a3e]/80">Профориентация и воспитание</p>
+        <h1 class="mt-3 [font-family:var(--font-landing-serif),Georgia,serif] text-4xl font-semibold leading-tight text-[#141210] sm:text-5xl lg:text-[3.25rem]">
+          Сергей Носков
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-[#3d3833] sm:text-xl">
+          Педагог с 20-летним стажем, кандидат наук, многодетный отец. Бесплатный канал Max для родителей подростков и
+          взрослых, которые хотят сменить сферу деятельности.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={ctaClass}>
+            <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
+            Подписаться на канал Max
+          </a>
+        </div>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+        <div
+          class="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[2rem] border border-white/60 bg-gradient-to-br from-white/50 to-white/5 shadow-[0_32px_80px_-24px_rgba(30,61,50,0.45)] sm:ml-auto sm:max-w-md"
+        >
+          {
+            authorImageSrc ? (
+              <img
+                src={authorImageSrc}
+                alt="Сергей Носков"
+                class="absolute inset-0 h-full w-full object-cover object-top"
+                width="800"
+                height="1000"
+                fetchpriority="high"
+              />
+            ) : (
+              <div class="flex h-full min-h-[20rem] w-full flex-col items-center justify-center bg-gradient-to-br from-[#e8dfd2] via-[#d4c4ad] to-[#2d4a3e] p-8 text-center">
+                <div class="mb-4 flex h-24 w-24 items-center justify-center rounded-full border-2 border-white/30 bg-white/20 text-3xl font-semibold text-[#1c1916] backdrop-blur-sm">
+                  СН
+                </div>
+                <p class="text-sm font-medium text-[#2d4a3e]">Фото автора</p>
+                <p class="mt-1 max-w-xs text-xs leading-relaxed text-[#3d3833]/80">
+                  Добавьте <code class="rounded bg-white/30 px-1">public/landing/author.png</code> или укажите
+                  <code class="rounded bg-white/30 px-1">PUBLIC_LANDING_AUTHOR_IMAGE</code> в .env
+                </p>
+              </div>
+            )
+          }
+        </div>
+        <div
+          class="absolute -bottom-4 -right-2 hidden h-24 w-24 rounded-3xl border border-[#c4a574]/30 bg-[#c4a574]/20 blur-0 sm:block"
+          aria-hidden="true"
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative border-y border-[#2d4a3e]/10 bg-white/50 py-20 backdrop-blur-sm">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="[font-family:var(--font-landing-serif),Georgia,serif] text-3xl font-semibold text-[#141210] sm:text-4xl">
+        Знакомо?
+      </h2>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+        {
+          painItems.map((text) => (
+            <li class="flex gap-3 rounded-2xl border border-[#2d4a3e]/10 bg-[#f7f4ef]/80 p-5 shadow-sm">
+              <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#2d4a3e]/10 text-sm text-[#2d4a3e]">
+                ▹
+              </span>
+              <span class="leading-relaxed text-[#3d3833]">{text}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-12 max-w-3xl text-lg leading-relaxed text-[#3d3833]">
+        В канале Max я показываю, как превратить сомнения в понятный пошаговый план. Без воды, только рабочие алгоритмы.
+      </p>
+      <div class="mt-8">
+        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={ctaClass}>
+          <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
+          Подписаться на канал Max
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="[font-family:var(--font-landing-serif),Georgia,serif] text-3xl font-semibold text-[#141210] sm:text-4xl">
+        Почему мне можно доверять?
+      </h2>
+      <div class="mt-10 space-y-5">
+        <div class="flex gap-4 rounded-2xl border border-[#c4a574]/25 bg-gradient-to-r from-white/60 to-[#f7f4ef]/60 p-5 sm:gap-5 sm:p-6">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#2d4a3e] text-[#f7f4ef]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              aria-hidden="true"
+            >
+              <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
+              <path d="M22 10v6"></path>
+              <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+            </svg>
+          </span>
+          <p class="pt-0.5 leading-relaxed text-[#3d3833]">Кандидат наук, доцент, педагог-профориентолог с опытом 20+ лет</p>
+        </div>
+        <div class="flex gap-4 rounded-2xl border border-[#c4a574]/25 bg-gradient-to-r from-white/60 to-[#f7f4ef]/60 p-5 sm:gap-5 sm:p-6">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#2d4a3e] text-[#f7f4ef]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              aria-hidden="true"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <p class="pt-0.5 leading-relaxed text-[#3d3833]">
+            Многодетный отец и предприниматель: понимаю семейный контекст и реальные требования рынка труда
+          </p>
+        </div>
+        <div class="flex gap-4 rounded-2xl border border-[#c4a574]/25 bg-gradient-to-r from-white/60 to-[#f7f4ef]/60 p-5 sm:gap-5 sm:p-6">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#2d4a3e] text-[#f7f4ef]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              aria-hidden="true"
+            >
+              <path
+                d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
+              ></path>
+              <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            </svg>
+          </span>
+          <p class="pt-0.5 leading-relaxed text-[#3d3833]">
+            Главное отличие: теория всегда переплетена с практикой. Никаких абстрактных тестов — только кейсы, разборы
+            ошибок и стратегии, которые можно применить завтра.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-14 rounded-[2rem] border border-[#2d4a3e]/12 bg-white/60 p-6 sm:p-8">
+        <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-[#2d4a3e]">
+          <span aria-hidden="true">📦</span> Внутри канала
+        </p>
+        <ul class="mt-6 space-y-3">
+          {
+            channelItems.map((line) => (
+              <li class="flex gap-3 text-[#3d3833]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mt-0.5 h-5 w-5 shrink-0 text-[#2d4a3e]"
+                  aria-hidden="true"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                <span class="leading-relaxed">{line}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="mt-10">
+        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={ctaClass}>
+          <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
+          Подписаться на канал Max
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-[#2d4a3e]/10 bg-gradient-to-b from-[#2d4a3e] to-[#1a2f28] py-20 text-[#f0ebe3]">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6">
+      <h2 class="[font-family:var(--font-landing-serif),Georgia,serif] text-3xl font-semibold sm:text-4xl">
+        Разбираемся вместе. Не принимайте решения вслепую.
+      </h2>
+      <p class="mt-6 text-lg leading-relaxed text-[#d8cfc3]">
+        Присоединяйтесь к сообществу родителей и взрослых, которые выбирают осознанно. Новые материалы выходят регулярно.
+        Отписаться можно в любой момент.
+      </p>
+      <div class="mt-10 flex flex-col items-center">
+        <a
+          href={maxChannelUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center justify-center gap-2 rounded-2xl bg-[#f7f4ef] px-7 py-4 text-base font-semibold text-[#1a2f28] shadow-lg transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4a574]"
+        >
+          <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
+          Подписаться на канал Max
+        </a>
+        <p class="mt-4 text-sm text-[#a89f94]">Канал бесплатный. Никакого спама.</p>
+      </div>
+    </div>
+  </section>
+</div>

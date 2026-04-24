@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-landing: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-landing-serif: 'Fraunces', Georgia, serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-landing);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
