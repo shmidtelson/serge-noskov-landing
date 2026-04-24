@@ -1,15 +1,5 @@
 ---
-import Base from '../layouts/Base.astro';
-import ProforientationMaxLanding from '../components/ProforientationMaxLanding.astro';
-import '../styles/global.css';
-
-const maxUrl = import.meta.env.PUBLIC_MAX_CHANNEL_URL || 'https://max.ru/';
-const authorFromEnv = import.meta.env.PUBLIC_LANDING_AUTHOR_IMAGE?.trim();
-const authorImage = authorFromEnv && authorFromEnv.length > 0 ? authorFromEnv : '/landing/author.png';
-const title = 'Профориентация — Сергей Носков | Канал в Max';
-const description =
-  'Сергей Носков — педагог, кандидат наук. Бесплатный канал Max: профориентация и смена карьеры.';
+import LandingPage from '../layouts/LandingPage.astro';
 ---
-<Base title={title} description={description}>
-  <ProforientationMaxLanding maxChannelUrl={maxUrl} authorImageSrc={authorImage} />
-</Base>
+
+<LandingPage variant="classic" />
