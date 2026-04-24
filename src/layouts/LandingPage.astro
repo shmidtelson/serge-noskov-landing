@@ -3,7 +3,8 @@ import Base from './Base.astro';
 import ProforientationMaxLanding from '../components/ProforientationMaxLanding.astro';
 import type { LandingVariant } from '../lib/landingThemes';
 import { LANDING_THEMES } from '../lib/landingThemes';
-import { DEFAULT_AUTHOR_IMAGE } from '../data/landingContent';
+import { publicUrl } from '../lib/sitePaths';
+import { DEFAULT_AUTHOR_REL } from '../data/landingContent';
 import '../styles/global.css';
 
 interface Props {
@@ -12,8 +13,12 @@ interface Props {
 const { variant } = Astro.props;
 
 const maxUrl = import.meta.env.PUBLIC_MAX_CHANNEL_URL || 'https://max.ru/';
+const base = import.meta.env.BASE_URL;
 const authorFromEnv = import.meta.env.PUBLIC_LANDING_AUTHOR_IMAGE?.trim();
-const authorImage = authorFromEnv && authorFromEnv.length > 0 ? authorFromEnv : DEFAULT_AUTHOR_IMAGE;
+const authorImage =
+  authorFromEnv && authorFromEnv.length > 0
+    ? publicUrl(authorFromEnv, base)
+    : publicUrl(DEFAULT_AUTHOR_REL, base);
 
 const theme = LANDING_THEMES[variant];
 const title = `Профориентация — Сергей Носков | ${theme.label}`;

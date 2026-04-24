@@ -1,4 +1,5 @@
-export const DEFAULT_AUTHOR_IMAGE = '/landing/autor.png';
+/** путь внутри `public/` (без ведущего /) — сочетается с `import.meta.env.BASE_URL` */
+export const DEFAULT_AUTHOR_REL = 'landing/author.png';
 
 export const painItems = [
   'Подросток теряется в вариантах, Вы не понимаете, что посоветовать?',
