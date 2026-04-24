@@ -1,5 +1,11 @@
-# Astro SSG → GitHub Pages. Enable: Settings → Pages → Source: GitHub Actions.
-# GITHUB_REPOSITORY is set by the runner; astro.config.mjs uses it for site + base (github.io).
+# Deploy Astro static `dist/` to GitHub Pages (official Actions flow).
+#
+# Required once per repo: Settings → Pages → Build and deployment
+#   → Source: "GitHub Actions" (not "Deploy from a branch").
+#   If you see 404 on "Deploy to GitHub Pages", the Pages API is disabled until
+#   that source is set. Public repos: Pages is free. Private: needs a plan with Pages.
+#
+# GITHUB_REPOSITORY is set by the runner; astro.config.mjs uses it for site + base.
 
 name: Deploy to GitHub Pages
 
@@ -15,7 +21,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -23,7 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Pinned version comes from package.json "packageManager" (no duplicate "version" here)
       - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v4
@@ -43,10 +48,13 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
-        id: deploy
+        id: deployment
         uses: actions/deploy-pages@v4
