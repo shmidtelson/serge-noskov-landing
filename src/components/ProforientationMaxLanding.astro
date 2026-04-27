@@ -5,10 +5,11 @@ import { painItems, channelItems } from '../data/landingContent';
 
 export interface Props {
   maxChannelUrl: string;
+  vkChannelUrl: string;
   authorImageSrc?: string;
   variant?: LandingVariant;
 }
-const { maxChannelUrl, authorImageSrc, variant = 'classic' } = Astro.props;
+const { maxChannelUrl, vkChannelUrl, authorImageSrc, variant = 'aurora' } = Astro.props;
 const t = LANDING_THEMES[variant];
 ---
 
@@ -22,13 +23,40 @@ const t = LANDING_THEMES[variant];
         <p class={t.kicker}>Профориентация и воспитание</p>
         <h1 class:list={['mt-3', t.h1]}>Сергей Носков</h1>
         <p class:list={['mt-6', t.lead]}>
-          Педагог с 20-летним стажем, кандидат наук, многодетный отец. Бесплатный канал Max для родителей подростков и
-          взрослых, которые хотят сменить сферу деятельности.
+          <strong class="font-semibold text-slate-900">
+            Помогаю подросткам выбрать профессию, а взрослым — сменить карьеру без потери дохода
+          </strong>
+          <br />
+          <span class="inline-block mt-3">
+            Педагог-практик с 20-летним стажем. Без абстрактных советов — только пошаговые стратегии. Помогаю наладить
+            диалог в семье и превратить конфликт поколений в точку роста.
+          </span>
         </p>
+        <div class="mt-8 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-center shadow-sm backdrop-blur">
+            <p class="text-lg font-bold text-slate-900">🗣️ 1000+</p>
+            <p class="text-sm text-slate-600">консультаций</p>
+            <p class="mt-1 text-xs text-slate-500">реальных кейсов с 2018 г.</p>
+          </div>
+          <div class="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-center shadow-sm backdrop-blur">
+            <p class="text-lg font-bold text-slate-900">🎓 90%+</p>
+            <p class="text-sm text-slate-600">поступили на бюджет</p>
+            <p class="mt-1 text-xs text-slate-500">сопровождение до результата</p>
+          </div>
+          <div class="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-center shadow-sm backdrop-blur">
+            <p class="text-lg font-bold text-slate-900">💼 250+</p>
+            <p class="text-sm text-slate-600">карьерных переходов</p>
+            <p class="mt-1 text-xs text-slate-500">без потери дохода</p>
+          </div>
+        </div>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-            <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
-            Подписаться на канал Max
+            <span aria-hidden="true">Ⓜ️</span>
+            Подписаться в Max
+          </a>
+          <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+            <span aria-hidden="true">🟦</span>
+            Подписаться во ВКонтакте
           </a>
         </div>
       </div>
@@ -62,14 +90,6 @@ const t = LANDING_THEMES[variant];
         <div class:list={['pointer-events-none', t.deco]} aria-hidden="true" />
       </div>
     </div>
-    <p class:list={['mt-6 text-center text-sm sm:px-6', t.painText, 'opacity-80']}>
-      <a
-        href={`${import.meta.env.BASE_URL}variants/`}
-        class="underline decoration-dotted underline-offset-2 transition hover:opacity-100"
-      >
-        Сравнить все варианты оформления (5)
-      </a>
-    </p>
   </section>
 
   <section class={t.painSection}>
@@ -88,10 +108,14 @@ const t = LANDING_THEMES[variant];
       <p class={t.bridge}>
         В канале Max я показываю, как превратить сомнения в понятный пошаговый план. Без воды, только рабочие алгоритмы.
       </p>
-      <div class="mt-8">
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-          <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
-          Подписаться на канал Max
+          <span aria-hidden="true">Ⓜ️</span>
+          Подписаться в Max
+        </a>
+        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+          <span aria-hidden="true">🟦</span>
+          Подписаться во ВКонтакте
         </a>
       </div>
     </div>
@@ -204,10 +228,14 @@ const t = LANDING_THEMES[variant];
         </ul>
       </div>
 
-      <div class="mt-10">
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-          <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
-          Подписаться на канал Max
+          <span aria-hidden="true">Ⓜ️</span>
+          Подписаться в Max
+        </a>
+        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+          <span aria-hidden="true">🟦</span>
+          Подписаться во ВКонтакте
         </a>
       </div>
     </div>
@@ -215,15 +243,19 @@ const t = LANDING_THEMES[variant];
 
   <section class={t.finalSection}>
     <div class="mx-auto max-w-3xl px-4 text-center sm:px-6">
-      <h2 class={t.finalH}>Разбираемся вместе. Не принимайте решения вслепую.</h2>
+      <h2 class={t.finalH}>Стратегии работают, когда их применяют осмысленно</h2>
       <p class:list={['mt-6', t.finalP]}>
-        Присоединяйтесь к сообществу родителей и взрослых, которые выбирают осознанно. Новые материалы выходят
-        регулярно. Отписаться можно в любой момент.
+        Делюсь инструментами, которые проходят проверку в реальных ситуациях. Разбираем ошибки, тестируем тактики и
+        учимся принимать решения без давления. Присоединяйтесь, чтобы двигаться в своём темпе.
       </p>
-      <div class="mt-10 flex flex-col items-center">
+      <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta}>
-          <span class="transition group-hover:translate-x-0.5" aria-hidden="true">👉</span>
-          Подписаться на канал Max
+          <span aria-hidden="true">Ⓜ️</span>
+          Подписаться в Max
+        </a>
+        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta}>
+          <span aria-hidden="true">🟦</span>
+          Подписаться во ВКонтакте
         </a>
         <p class:list={['mt-4', t.finalNote]}>Канал бесплатный. Никакого спама.</p>
       </div>

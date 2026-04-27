@@ -20,8 +20,43 @@ const base = import.meta.env.BASE_URL;
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..40,500;0,9..40,600&subset=cyrillic,cyrillic-ext,latin&display=swap"
       rel="stylesheet"
     />
+    <!-- Yandex.Metrika counter -->
+    <script is:inline type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j += 1) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        k = e.createElement(t);
+        a = e.getElementsByTagName(t)[0];
+        k.async = 1;
+        k.src = r;
+        a.parentNode.insertBefore(k, a);
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=108753895', 'ym');
+      ym(108753895, 'init', {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: 'dataLayer',
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true,
+      });
+    </script>
+    <!-- /Yandex.Metrika counter -->
   </head>
   <body>
+    <noscript>
+      <div><img src="https://mc.yandex.ru/watch/108753895" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <slot />
   </body>
 </html>

@@ -1,18 +1,15 @@
 ---
 import Base from './Base.astro';
 import ProforientationMaxLanding from '../components/ProforientationMaxLanding.astro';
-import type { LandingVariant } from '../lib/landingThemes';
 import { LANDING_THEMES } from '../lib/landingThemes';
 import { publicUrl } from '../lib/sitePaths';
 import { DEFAULT_AUTHOR_REL } from '../data/landingContent';
 import '../styles/global.css';
 
-interface Props {
-  variant: LandingVariant;
-}
-const { variant } = Astro.props;
+const variant = 'aurora';
 
-const maxUrl = import.meta.env.PUBLIC_MAX_CHANNEL_URL || 'https://max.ru/';
+const maxUrl = import.meta.env.PUBLIC_MAX_CHANNEL_URL || 'https://max.ru/id550601110275_biz';
+const vkUrl = import.meta.env.PUBLIC_VK_CHANNEL_URL || 'https://vk.com/education_career';
 const base = import.meta.env.BASE_URL;
 const authorFromEnv = import.meta.env.PUBLIC_LANDING_AUTHOR_IMAGE?.trim();
 const authorImage =
@@ -27,5 +24,10 @@ const description =
 ---
 
 <Base title={title} description={description}>
-  <ProforientationMaxLanding maxChannelUrl={maxUrl} authorImageSrc={authorImage} variant={variant} />
+  <ProforientationMaxLanding
+    maxChannelUrl={maxUrl}
+    vkChannelUrl={vkUrl}
+    authorImageSrc={authorImage}
+    variant={variant}
+  />
 </Base>
