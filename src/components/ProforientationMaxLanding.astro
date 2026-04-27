@@ -2,6 +2,8 @@
 import type { LandingVariant } from '../lib/landingThemes';
 import { LANDING_THEMES } from '../lib/landingThemes';
 import { painItems, channelItems } from '../data/landingContent';
+import MaxLogoIcon from './icons/MaxLogoIcon.astro';
+import VkLogoIcon from './icons/VkLogoIcon.astro';
 
 export interface Props {
   maxChannelUrl: string;
@@ -51,12 +53,12 @@ const t = LANDING_THEMES[variant];
         </div>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-            <span aria-hidden="true">Ⓜ️</span>
-            Подписаться в Max
+            Подписаться
+            <MaxLogoIcon class="h-5 w-5 shrink-0" />
           </a>
           <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-            <span aria-hidden="true">🟦</span>
-            Подписаться во ВКонтакте
+            Подписаться
+            <VkLogoIcon class="h-5 w-5 shrink-0" />
           </a>
         </div>
       </div>
@@ -110,12 +112,12 @@ const t = LANDING_THEMES[variant];
       </p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-          <span aria-hidden="true">Ⓜ️</span>
-          Подписаться в Max
+          Подписаться
+          <MaxLogoIcon class="h-5 w-5 shrink-0" />
         </a>
         <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-          <span aria-hidden="true">🟦</span>
-          Подписаться во ВКонтакте
+          Подписаться
+          <VkLogoIcon class="h-5 w-5 shrink-0" />
         </a>
       </div>
     </div>
@@ -230,12 +232,12 @@ const t = LANDING_THEMES[variant];
 
       <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-          <span aria-hidden="true">Ⓜ️</span>
-          Подписаться в Max
+          Подписаться
+          <MaxLogoIcon class="h-5 w-5 shrink-0" />
         </a>
         <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
-          <span aria-hidden="true">🟦</span>
-          Подписаться во ВКонтакте
+          Подписаться
+          <VkLogoIcon class="h-5 w-5 shrink-0" />
         </a>
       </div>
     </div>
@@ -250,14 +252,14 @@ const t = LANDING_THEMES[variant];
       </p>
       <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta}>
-          <span aria-hidden="true">Ⓜ️</span>
-          Подписаться в Max
+          Подписаться
+          <MaxLogoIcon class="h-5 w-5 shrink-0" />
         </a>
         <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta}>
-          <span aria-hidden="true">🟦</span>
-          Подписаться во ВКонтакте
+          Подписаться
+          <VkLogoIcon class="h-5 w-5 shrink-0" />
         </a>
-        <p class:list={['mt-4', t.finalNote]}>Канал бесплатный. Никакого спама.</p>
+        <p class:list={[ t.finalNote]}>Канал бесплатный. Никакого спама.</p>
       </div>
     </div>
   </section>
