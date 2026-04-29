@@ -13,6 +13,9 @@ export interface Props {
 }
 const { maxChannelUrl, vkChannelUrl, authorImageSrc, variant = 'aurora' } = Astro.props;
 const t = LANDING_THEMES[variant];
+/** Идентификаторы целей в Метрике — создайте цели с такими ID или задайте PUBLIC_YM_GOAL_* в .env */
+const ymGoalMax = import.meta.env.PUBLIC_YM_GOAL_MAX?.trim() || 'max_subscribe';
+const ymGoalVk = import.meta.env.PUBLIC_YM_GOAL_VK?.trim() || 'vk_subscribe';
 ---
 
 <div class={t.page}>
@@ -52,11 +55,11 @@ const t = LANDING_THEMES[variant];
           </div>
         </div>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+          <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta} data-ym-goal={ymGoalMax}>
             Подписаться
             <MaxLogoIcon class="h-5 w-5 shrink-0" />
           </a>
-          <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+          <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta} data-ym-goal={ymGoalVk}>
             Подписаться
             <VkLogoIcon class="h-5 w-5 shrink-0" />
           </a>
@@ -111,11 +114,11 @@ const t = LANDING_THEMES[variant];
         В канале Max я показываю, как превратить сомнения в понятный пошаговый план. Без воды, только рабочие алгоритмы.
       </p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta} data-ym-goal={ymGoalMax}>
           Подписаться
           <MaxLogoIcon class="h-5 w-5 shrink-0" />
         </a>
-        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta} data-ym-goal={ymGoalVk}>
           Подписаться
           <VkLogoIcon class="h-5 w-5 shrink-0" />
         </a>
@@ -231,11 +234,11 @@ const t = LANDING_THEMES[variant];
       </div>
 
       <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta} data-ym-goal={ymGoalMax}>
           Подписаться
           <MaxLogoIcon class="h-5 w-5 shrink-0" />
         </a>
-        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta}>
+        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.cta} data-ym-goal={ymGoalVk}>
           Подписаться
           <VkLogoIcon class="h-5 w-5 shrink-0" />
         </a>
@@ -245,21 +248,21 @@ const t = LANDING_THEMES[variant];
 
   <section class={t.finalSection}>
     <div class="mx-auto max-w-3xl px-4 text-center sm:px-6">
-      <h2 class={t.finalH}>Стратегии работают, когда их применяют осмысленно</h2>
+      <h2 class={t.finalH}>Разбираемся вместе. Не принимайте решения вслепую.</h2>
       <p class:list={['mt-6', t.finalP]}>
-        Делюсь инструментами, которые проходят проверку в реальных ситуациях. Разбираем ошибки, тестируем тактики и
-        учимся принимать решения без давления. Присоединяйтесь, чтобы двигаться в своём темпе.
+        Присоединяйтесь к сообществу родителей и взрослых, которые выбирают осознанно. Новые материалы выходят
+        регулярно. Отписаться можно в любой момент.
       </p>
       <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta}>
+        <a href={maxChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta} data-ym-goal={ymGoalMax}>
           Подписаться
           <MaxLogoIcon class="h-5 w-5 shrink-0" />
         </a>
-        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta}>
+        <a href={vkChannelUrl} target="_blank" rel="noopener noreferrer" class={t.finalCta} data-ym-goal={ymGoalVk}>
           Подписаться
-          <VkLogoIcon class="h-5 w-5 shrink-0" />
+          <VkLogoIcon variant="onLight" class="h-5 w-5 shrink-0" />
         </a>
-        <p class:list={[ t.finalNote]}>Канал бесплатный. Никакого спама.</p>
+        <p class:list={[t.finalNote]}>Канал бесплатный. Никакого спама.</p>
       </div>
     </div>
   </section>

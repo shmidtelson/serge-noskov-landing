@@ -1,0 +1,16 @@
+{
+  "name": "Сергей Носков — профориентация",
+  "short_name": "Профориентация",
+  "start_url": "../",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#4f46e5",
+  "background_color": "#e0e7ff",
+  "display": "standalone"
+}
